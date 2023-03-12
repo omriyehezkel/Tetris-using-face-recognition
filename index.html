@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris game</title>
+    <link rel="stylesheet" href="index.css">
+    <script async src="js/opencv.js" onload="openCvReady();"></script>
+    <script src="js/utils.js"></script>
+    <script type="text/JavaScript">
+        
+const FaceStatus = "<%= face_status %>";
+
+///opencv func
+function openCvReady() {
+          cv['onRuntimeInitialized']=()=>{
+            let video = document.getElementById("cam_input"); // video is the id of video tag
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+            .then(function(stream) {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(function(err) {
+                console.log("An error occurred! " + err);
+            });
+//flags
+let eyeR=0;
+let eyeL=0;
+let smile=0;
+
+//cv param
+
+            let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+            let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
+            let gray = new cv.Mat();
+            let cap = new cv.VideoCapture(cam_input);
+
+            let faces = new cv.RectVector();
+            let eyes = new cv.RectVector();
+            let smiles = new cv.RectVector();
+            let lefteye = new cv.RectVector();
+            let righteye = new cv.RectVector();
+
+            let classifier = new cv.CascadeClassifier();
+            let eyeC = new cv.CascadeClassifier();
+            let SmileC = new cv.CascadeClassifier();
+            let eyeleftC = new cv.CascadeClassifier();
+            let eyerightC = new cv.CascadeClassifier();
+           
+            const FPS = 30;
+
+    // path to xml
+            let faceCascadeFile = 'haarcascade_frontalface_default.xml'; 
+            let eyesCascadeFile = 'haarcascade_eye.xml';
+            let LeftEyesClosedCascadeFile = 'haarcascade_lefteye_2splits.xml';
+            let RightEyesClosedCascadeFile = 'haarcascade_righteye_2splits.xml';
+            let SmileCascadeFile = 'haarcascade_smile.xml';
+            let utils = new Utils('errorMessage');
+
+        
+//FACE
+         utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+                classifier.load(faceCascadeFile); // in the callback, load the cascade from file 
+//EYE
+        utils.createFileFromUrl(eyesCascadeFile, eyesCascadeFile, () => {
+            eyeC.load(eyesCascadeFile); // in the callback, load the cascade from file 
+        });
+        
+    //SMILE
+        utils.createFileFromUrl(SmileCascadeFile, SmileCascadeFile, () => {
+            SmileC.load(SmileCascadeFile); // in the callback, load the cascade from file 
+        });
+        
+    //LEFT EYE
+        utils.createFileFromUrl(LeftEyesClosedCascadeFile, LeftEyesClosedCascadeFile, () => {
+            eyeleftC.load(LeftEyesClosedCascadeFile); // in the callback, load the cascade from file 
+        });
+        });
+
+
+
+
+
+}
+}
+</script>
+
+
+
+</head>
+<body>
+    <p id="face_status"></p>
+    <video id="cam_input" height="480" width="640"></video>
+
+</body>
+</html>

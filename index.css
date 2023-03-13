@@ -1,0 +1,61 @@
+body{
+    background-image: url(tetris.png);
+    background-repeat: inherit;
+  border-radius: 3px;  
+  
+  }
+  .cam_input{
+    right: 150px;
+    visibility:false;
+    display: none;
+    visibility: hidden;
+  }
+  
+  video {
+  display: none;
+  }
+  
+  
+  
+  .canvas_output{
+    height: 450px;
+    width: 450px;
+    margin-top: 5px;
+    border-radius: 3px;  
+    position: absolute;
+    border-radius: 3px;  
+  
+      
+    }
+    
+    p{
+      font-size: 50;
+      font-family: "Lucida Console", "Courier New", monospace;
+  color: white;
+  background-color: black;
+  text-align: center;
+  border-radius: 3px;  
+  animation-name: example;
+  animation-duration: 150s;
+  
+  
+  
+  
+    }
+    @keyframes example {
+      0%   {background-color: red;}
+      0%   {color: blue;}
+      25%  {background-color: yellow;}
+      25%  {color: green;}
+      50%  {background-color: blue;}
+      50%  {color: red;}
+      100% {background-color: green;}
+      100% {color: yellow;}
+    }
+    
+    h2{
+      display: none;
+    }
+  
+  
+    

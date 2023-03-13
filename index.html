@@ -22,11 +22,12 @@ function openCvReady() {
             .catch(function(err) {
                 console.log("An error occurred! " + err);
             });
-//flags
-let eyeR=0;
-let eyeL=0;
-let smile=0;
+//flag
 let smileFlag = false;
+//counter
+let eyeRightCount=0;
+let eyeLeftCount=0;
+let smileCount=0;
 
 //cv param
 
@@ -106,15 +107,32 @@ let smileFlag = false;
                         smileFlag=true;
                         consol.log("smile = " + smiles.size());
 
+                        if(smileCount()>3){
+                            if(smileFlag==true){
+                                if(smiles.size()==0){
+                                    console.log("MOUTH OPEN")
+                                    document.getElementById("face_status").innerHTML
+                                     = "MOUTH OPEN";
+                                    cv.putText(dst, "MOUTH OPEN", new cv.Point(300,100),
+                                     cv.FONT_HERSHEY_SIMPLEX, 0.9,new cv.Scalar(0, 0, 0));
+                                
+                                     smilCount=0;
+                        }
                 }
+            }
+            smileCount++;
+        
 
-
-
+    cv.imshow("canvas_output", dst);
+                // schedule next one.
+                let delay = 1000/FPS - (Date.now() - begin);
+                setTimeout(processVideo, delay); 
 
 
 }
-}
-}
+setTimeout(processVideo, 0);
+          };
+        }
 </script>
 
 
@@ -123,6 +141,16 @@ let smileFlag = false;
 <body>
     <p id="face_status"></p>
     <video id="cam_input" height="480" width="640"></video>
-
+     <canvas id="canvas_output"></canvas>
+    <canvas
+    id = "game-canvas"
+    width="300" 
+    height="600"
+    ></canvas>
+    <h2 id = "scoreboard">Score: 0</h2>
+    <script src="./constants.js"></script>
+    <script src="./piece.js"></script>
+    <script src="./gamemodel.js"></script>
+    <script src="./tetris.js"></script>
 </body>
 </html>

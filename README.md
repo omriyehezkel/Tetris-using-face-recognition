@@ -23,7 +23,7 @@ Install the "Live Server" extension by going to the Extensions tab and searching
 Click on the "Go Live" button in the bottom right corner of the editor or right-click on the index.html file and select "Open with Live Server".
 This will start a local web server and open the game in your default browser. The game will prompt you to grant access to your camera.
 
-***The game controls are as follows:***
+***The game controls***
 
 Close right eye: Move the tetromino to the right 
 Close left eye: Move the tetromino to the left

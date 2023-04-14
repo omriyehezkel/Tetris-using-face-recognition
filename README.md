@@ -26,7 +26,9 @@ This will start a local web server and open the game in your default browser. Th
 ***The game controls***
 
 -Close right eye: Move the tetromino to the right.
+
 -Close left eye: Move the tetromino to the left.
+
 -Open mouth: Rotate the tetromino clockwise.
 
 The face recognition feature uses the Haar Cascade files to recognize your facial expressions. When you close your right eye, the tetromino moves to the right. When you close your left eye, the tetromino moves to the left. When you open your mouth, the tetromino rotates clockwise.
